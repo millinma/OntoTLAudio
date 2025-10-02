@@ -1,0 +1,11 @@
+id: Cnn10-AS-naturalsounds-P
+_target_: autrainer.models.Cnn10
+model_checkpoint: model_states/Cnn10-AS-naturalsounds-P.pt
+#sigmoid_output: false
+#segmentwise: false
+#in_channels: 1
+
+transform:
+  type: grayscale
+  base:
+    - autrainer.transforms.Normalize: null

@@ -1,0 +1,17 @@
+defaults:
+  - _autrainer_
+  - _self_
+
+results_dir: results
+experiment_id: pretraining
+iterations: 30
+
+hydra:
+  sweeper:
+    params:
+      +seed: 1
+      +batch_size: 128
+      +learning_rate: 0.001
+      dataset: AudioSet-16k, AudioSet-16k-animal, AudioSet-16k-humansounds, AudioSet-16k-naturalsounds, AudioSet-16k-naturalsources, AudioSet-16k-nature, AudioSet-16k-nonhuman, AudioSet-16k-reduced-0.1, AudioSet-16k-reduced-0.01, AudioSet-16k-reduced-0.3, AudioSet-16k-reduced-0.03, AudioSet-16k-speech, AudioSet-16k-things
+      model: Cnn10
+      optimizer: Adam

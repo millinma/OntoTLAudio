@@ -1,0 +1,10 @@
+id: Cnn10
+_target_: autrainer.models.Cnn10
+#sigmoid_output: false
+#segmentwise: false
+#in_channels: 1
+
+transform:
+  type: grayscale
+  base:
+    - autrainer.transforms.Normalize: null

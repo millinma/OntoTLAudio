@@ -1,0 +1,42 @@
+id: AudioSet-16k-nonhuman
+_target_: audioset.AudioSet
+
+dev_split_seed: 42
+# dev_split: 0.2
+train_set_size: 1.
+test_set_size: 1.
+label_categories:
+  - Animal
+  - Natural sounds
+  - Sounds of things
+
+# threshold: 0.5
+
+path: /data/AudioSet
+csv_path: /data/AudioSet
+features_path: /data/AudioSet
+balanced_version: False
+features_subdir: log_mel_16k
+index_column: filename
+
+file_type: npy
+file_handler: autrainer.datasets.utils.NumpyFileHandler
+
+criterion: torch.nn.BCEWithLogitsLoss
+metrics:
+  - autrainer.metrics.MLAccuracy
+  - autrainer.metrics.MLF1Micro
+  - autrainer.metrics.MLF1Macro
+  - autrainer.metrics.MLF1Weighted
+tracking_metric: autrainer.metrics.MLF1Weighted
+
+transform:
+  type: grayscale
+  base:
+    - autrainer.transforms.Expand:
+        size: 1001
+        axis: -2
+  train:
+    - autrainer.transforms.RandomCrop:
+        size: 1001
+        axis: -2

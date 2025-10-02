@@ -1,0 +1,18 @@
+defaults:
+  - _autrainer_
+  - _self_
+
+results_dir: results
+experiment_id: finetuning
+iterations: 50
+
+hydra:
+  sweeper:
+    params:
+      +seed: 1, 2, 3
+      +batch_size: 32
+      +learning_rate: 0.001
+      #dataset: DCASE2020Task1A-16k, SpeechCommands-16k, DCASE2018Task3-16k
+      dataset: SpeechCommands-16k
+      model: Cnn10, Cnn10-AS-P, Cnn10-AS-naturalsources-P, Cnn10-AS-humansounds-P, Cnn10-AS-speech-P, Cnn10-AS-things-P, Cnn10-AS-nature-P, Cnn10-AS-nonhuman-P, Cnn10-AS-naturalsounds-P, Cnn10-AS-animal-P, Cnn10-AS-0.3-P, Cnn10-AS-0.1-P, Cnn10-AS-0.03-P, Cnn10-AS-0.01-P
+      optimizer: Adam

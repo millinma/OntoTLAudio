@@ -1,0 +1,40 @@
+id: AudioSet-16k-reduced-0.3
+_target_: audioset.AudioSet
+
+dev_split_seed: 42
+# dev_split: 0.2
+train_set_size: .3
+test_set_size: 1.
+# threshold: 0.5
+
+path: /data/AudioSet
+csv_path: /data/AudioSet
+features_path: /data/AudioSet
+csv_path: /mnt/data/AudioSet_large
+features_path: /mnt/data/AudioSet_large
+features_subdir: log_mel_16k
+balanced_version: False
+# balanced_version: True
+index_column: filename
+
+file_type: npy
+file_handler: autrainer.datasets.utils.NumpyFileHandler
+
+criterion: torch.nn.BCEWithLogitsLoss
+metrics:
+  - autrainer.metrics.MLAccuracy
+  - autrainer.metrics.MLF1Micro
+  - autrainer.metrics.MLF1Macro
+  - autrainer.metrics.MLF1Weighted
+tracking_metric: autrainer.metrics.MLF1Weighted
+
+transform:
+  type: grayscale
+  base:
+    - autrainer.transforms.Expand:
+        size: 1001
+        axis: -2
+  train:
+    - autrainer.transforms.RandomCrop:
+        size: 1001
+        axis: -2
